@@ -106,7 +106,7 @@
 
 3. 用户因使用本程序而产生的任何版权纠纷或法律责任，由用户自行承担。
 
-4. 核心解码代码贡献基于 github.com/xiSage/ncmdump-net 的 VB.NET 移植版。
+4. 解码贡献基于 github.com/xiSage/ncmdump-net 的 VB.NET 移植版。
 
    
 
