@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="Lang_DropHere">Drop NCM files here</system:String>
+    <system:String x:Key="Lang_MenuRemove">Remove Item</system:String>
+    <system:String x:Key="Lang_MenuClear">Clear List</system:String>
+    <system:String x:Key="Lang_AlbumPrefix">Album:</system:String>
+    <system:String x:Key="Lang_SettingsTitle">Settings</system:String>
+    <system:String x:Key="Lang_NameFormat">Output Naming Format:</system:String>
+    <system:String x:Key="Lang_Vars">Vars: %s(Title) %a(Artist) %al(Album) %o(Orig) %y(Year) %m(Month) %d(day) %t(time)</system:String>
+    <system:String x:Key="Lang_Theme">Theme:</system:String>
+    <system:String x:Key="Lang_Language">Language:</system:String>
+    <system:String x:Key="Lang_SaveClose">Save and Close</system:String>
+    <system:String x:Key="Lang_AppDesc1">For personal learning and local decoding testing only.</system:String>
+    <system:String x:Key="Lang_AppDesc2">Please respect digital copyrights. No commercial use.</system:String>
+    <system:String x:Key="Lang_Repo">Open Source:</system:String>
+    <system:String x:Key="Lang_Close">Close</system:String>
+    <system:String x:Key="Lang_AddFile">Add Files</system:String>
+    <system:String x:Key="Lang_AddFolder">Add Folder</system:String>
+    <system:String x:Key="Lang_OutputDir">Output Dir:</system:String>
+    <system:String x:Key="Lang_SameAsSource">Same as source</system:String>
+    <system:String x:Key="Lang_ChangeBtn">[Change]</system:String>
+    <system:String x:Key="Lang_StartConvert">Start Convert</system:String>
+    <system:String x:Key="Lang_Converting">Converting...</system:String>
+    <system:String x:Key="Lang_ConvertDone">Completed</system:String>
+
+    <system:String x:Key="Lang_StatusWait">Waiting</system:String>
+    <system:String x:Key="Lang_StatusDecrypt">Decrypting...</system:String>
+    <system:String x:Key="Lang_StatusWrite">Writing...</system:String>
+    <system:String x:Key="Lang_StatusTag">Tagging...</system:String>
+    <system:String x:Key="Lang_StatusSuccess">✅ Done</system:String>
+    <system:String x:Key="Lang_StatusFail">❌ Failed</system:String>
+    <system:String x:Key="Lang_Parsing">Parsing...</system:String>
+    <system:String x:Key="Lang_ParseFail">Parse Failed</system:String>
+    <system:String x:Key="Lang_UnknownArtist">Unknown Artist</system:String>
+    <system:String x:Key="Lang_SelectMusic">Select NCM files</system:String>
+    <system:String x:Key="Lang_SelectFolder">Select folder containing NCM files</system:String>
+    <system:String x:Key="Lang_SelectOutFolder">Select output directory</system:String>
+    <system:String x:Key="Lang_MsgSelectFirst">Please add and check the songs to convert!</system:String>
+    <system:String x:Key="Lang_MsgTip">Notice</system:String>
+
+    <system:String x:Key="Lang_ThemeLight">Light</system:String>
+    <system:String x:Key="Lang_ThemeDark">Dark</system:String>
+    <system:String x:Key="Lang_LangZh">简体中文</system:String>
+    <system:String x:Key="Lang_LangEn">English</system:String>
+
+    <system:String x:Key="Lang_VersionLabel">Version</system:String>
+    <system:String x:Key="Lang_NewVersionFound">🔥 New version found:</system:String>
+    <system:String x:Key="Lang_UpdateAvailable">New version available!</system:String>
+    
+    <system:String x:Key="Lang_DownloadUpdate">[Download]</system:String>
+    
+</ResourceDictionary>

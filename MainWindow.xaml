@@ -1,0 +1,520 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NCM Master" Height="500" Width="850"
+        
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        AllowDrop="True" Drop="DropArea_Drop" DragOver="DropArea_DragOver">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="LightTheme.xaml"/>
+                <ResourceDictionary Source="Lang.zh-CN.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <Style x:Key="ModernScrollBarThumb" TargetType="Thumb">
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border CornerRadius="3" Background="{DynamicResource SecondaryText}" Opacity="0.4" Margin="2"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="ScrollBar">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Width" Value="10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ScrollBar">
+                            <Grid Background="Transparent">
+                                <Track x:Name="PART_Track" IsDirectionReversed="true">
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource ModernScrollBarThumb}"/>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="WindowButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryText}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Width" Value="40"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource BorderColor}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource WindowButtonStyle}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF4D4D"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="OutlineButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{DynamicResource CardBg}"/>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="12,5"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource PanelBg}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#0066CC"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="0,10"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#0055AA"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="LinkButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#0066CC"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="#004488"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+                <Border x:Name="TemplateRoot" CornerRadius="6" Background="{DynamicResource WindowBg}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1">
+                    <Grid x:Name="Grid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" MinWidth="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="Separator" Grid.Column="1" HorizontalAlignment="Left" Width="1" Margin="0,5,0,5" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1,0,0,0"/>
+                        <Path x:Name="Arrow" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="{DynamicResource SecondaryText}" Data="F1 M 0,0 L 3.5,4 L 7,0 Z"/>
+                    </Grid>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter TargetName="TemplateRoot" Property="Background" Value="{DynamicResource BorderColor}"/>
+                        <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource PrimaryText}"/>
+                    </Trigger>
+                    <Trigger Property="IsChecked" Value="true">
+                        <Setter TargetName="Arrow" Property="Fill" Value="{DynamicResource PrimaryText}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <Style x:Key="NcmMasterComboBoxItem" TargetType="ComboBoxItem">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"/>
+                <Setter Property="Padding" Value="10,6"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBoxItem">
+                            <Border x:Name="border" Background="Transparent" CornerRadius="4" Margin="4,2">
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource PanelBg}"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="true">
+                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource PanelBg}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="NcmMasterComboBox" TargetType="ComboBox">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"/>
+                <Setter Property="Background" Value="{DynamicResource WindowBg}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="MinHeight" Value="34"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource NcmMasterComboBoxItem}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBox">
+                            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="30"/>
+                                </Grid.ColumnDefinitions>
+                                <ToggleButton x:Name="ToggleButton" Grid.ColumnSpan="2" Template="{StaticResource ComboBoxToggleButton}" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Grid.Column="0" Margin="12,0,12,0" HorizontalAlignment="Left" IsHitTestVisible="false" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Placement="Bottom" Margin="1" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                                    <Border x:Name="dropDownBorder" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="250" CornerRadius="6" Background="{DynamicResource CardBg}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1">
+                                        <ScrollViewer Margin="0,5,0,5" SnapsToDevicePixels="True">
+                                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border Background="{DynamicResource WindowBg}" CornerRadius="20" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <TextBlock Text="NCM Master" VerticalAlignment="Center" Margin="20,0" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource PrimaryText}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <Button Content="⚙" Click="BtnSettings_Click" Style="{StaticResource WindowButtonStyle}" Margin="0,0,5,0"/>
+                    <Button x:Name="BtnAbout" Content="ℹ" Click="BtnAbout_Click" Style="{StaticResource WindowButtonStyle}" ToolTip="关于" Margin="0,0,15,0"/>
+                    <Button Content="—" Click="BtnMinimize_Click" Style="{StaticResource WindowButtonStyle}" Margin="0,0,5,0"/>
+                    <Button Content="✕" Click="BtnClose_Click" Style="{StaticResource CloseButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="20,0,20,10">
+                <Rectangle x:Name="DropAreaBorder" Stroke="{DynamicResource SecondaryText}" StrokeThickness="2" StrokeDashArray="4 2" RadiusX="15" RadiusY="15"/>
+
+                <Border x:Name="DropArea" Background="Transparent" CornerRadius="15" MouseLeftButtonDown="DropArea_MouseLeftButtonDown">
+                    <Grid>
+                        <StackPanel x:Name="DropPromptPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="+" FontSize="48" Foreground="{DynamicResource SecondaryText}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Lang_DropHere}" FontSize="16" Foreground="{DynamicResource SecondaryText}" Margin="0,10,0,0"/>
+                        </StackPanel>
+
+                        <ListBox x:Name="MusicList" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Collapsed" Margin="5">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <ContentPresenter/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="5,5,5,10" CornerRadius="12" Padding="10" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="{DynamicResource CardBg}"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="{DynamicResource PanelBg}"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                        <Border.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="{DynamicResource Lang_MenuRemove}" Click="MenuItem_Remove_Click">
+                                                    <MenuItem.Icon>
+                                                        <TextBlock Text="❌" Margin="1,0,0,0"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <Separator/>
+                                                <MenuItem Header="{DynamicResource Lang_MenuClear}" Click="MenuItem_ClearList_Click">
+                                                    <MenuItem.Icon>
+                                                        <TextBlock Text="🗑️" Margin="1,0,0,0"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                            </ContextMenu>
+                                        </Border.ContextMenu>
+
+                                        <Border.Effect>
+                                            <DropShadowEffect Color="#000000" Opacity="0.06" BlurRadius="10" ShadowDepth="2"/>
+                                        </Border.Effect>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="80"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand">
+                                                <CheckBox.LayoutTransform>
+                                                    <ScaleTransform ScaleX="1.3" ScaleY="1.3"/>
+                                                </CheckBox.LayoutTransform>
+                                            </CheckBox>
+
+                                            <Button Grid.Column="1" Click="BtnPlay_Click" Width="50" Height="50" HorizontalAlignment="Left" Cursor="Hand">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Grid>
+                                                            <Ellipse Fill="{DynamicResource BorderColor}"/>
+                                                            <Ellipse RenderTransformOrigin="0.5,0.5">
+                                                                <Ellipse.Fill>
+                                                                    <ImageBrush ImageSource="{Binding CoverImage}" Stretch="UniformToFill"/>
+                                                                </Ellipse.Fill>
+                                                                <Ellipse.RenderTransform>
+                                                                    <RotateTransform x:Name="CoverRotate" Angle="0"/>
+                                                                </Ellipse.RenderTransform>
+                                                            </Ellipse>
+                                                            <Grid x:Name="OverlayGroup" Opacity="0">
+                                                                <Ellipse Fill="#77000000"/>
+                                                                <TextBlock x:Name="PlayIcon" Text="▶" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3,0,0,0" IsHitTestVisible="False"/>
+                                                            </Grid>
+                                                        </Grid>
+
+                                                        <ControlTemplate.Triggers>
+                                                            <EventTrigger RoutedEvent="Loaded">
+                                                                <BeginStoryboard Name="SpinAnimation">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="CoverRotate" Storyboard.TargetProperty="Angle" By="360" Duration="0:0:5" RepeatBehavior="Forever"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                                <PauseStoryboard BeginStoryboardName="SpinAnimation"/>
+                                                            </EventTrigger>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="OverlayGroup" Property="Opacity" Value="1"/>
+                                                            </Trigger>
+                                                            <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+                                                                <Setter TargetName="PlayIcon" Property="Text" Value="⏸"/>
+                                                                <Setter TargetName="PlayIcon" Property="Margin" Value="0"/>
+                                                                <DataTrigger.EnterActions>
+                                                                    <ResumeStoryboard BeginStoryboardName="SpinAnimation"/>
+                                                                </DataTrigger.EnterActions>
+                                                                <DataTrigger.ExitActions>
+                                                                    <PauseStoryboard BeginStoryboardName="SpinAnimation"/>
+                                                                </DataTrigger.ExitActions>
+                                                            </DataTrigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+
+                                            <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="10,0,10,0">
+                                                <TextBlock Text="{Binding FileName}" FontWeight="SemiBold" FontSize="15" Foreground="{DynamicResource PrimaryText}" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Text="{Binding Artist}" FontSize="13" Foreground="{DynamicResource SecondaryText}" Margin="0,4,0,0" TextTrimming="CharacterEllipsis"/>
+                                                <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                                                    <TextBlock Text="{DynamicResource Lang_AlbumPrefix}" FontSize="12" Foreground="{DynamicResource SecondaryText}"/>
+                                                    <TextBlock Text="{Binding Album}" FontSize="12" Foreground="{DynamicResource SecondaryText}" TextTrimming="CharacterEllipsis"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <TextBlock Grid.Column="3" Text="{Binding Status}" Foreground="{Binding StatusColor}" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="13" FontWeight="Medium"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Border x:Name="SettingsOverlay" Grid.RowSpan="3" Background="#66000000" CornerRadius="20" ClipToBounds="True" Visibility="Collapsed" Panel.ZIndex="100">
+                <Border Width="600" Height="400" Background="{DynamicResource CardBg}" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Opacity="0.2" BlurRadius="20" ShadowDepth="5"/>
+                    </Border.Effect>
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{DynamicResource Lang_SettingsTitle}" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource PrimaryText}"/>
+                        <Button Content="✕" Click="BtnCloseSettings_Click" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" FontSize="16" Foreground="{DynamicResource SecondaryText}" Cursor="Hand"/>
+
+                        <StackPanel Grid.Row="1" Margin="0,20,0,0">
+                            <TextBlock Text="{DynamicResource Lang_NameFormat}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryText}" Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtNameFormat" Padding="8" BorderBrush="{DynamicResource BorderColor}" Background="{DynamicResource WindowBg}" Foreground="{DynamicResource PrimaryText}" BorderThickness="1" FontSize="14"/>
+                            <TextBlock Text="{DynamicResource Lang_Vars}" FontSize="12" Foreground="{DynamicResource SecondaryText}" Margin="0,5,0,20"/>
+
+                            <TextBlock Text="{DynamicResource Lang_Theme}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryText}" Margin="0,0,0,5"/>
+                            <ComboBox x:Name="CmbTheme" Style="{StaticResource NcmMasterComboBox}" Margin="0,0,0,20">
+                                <ComboBoxItem Content="{DynamicResource Lang_ThemeLight}"/>
+                                <ComboBoxItem Content="{DynamicResource Lang_ThemeDark}"/>
+                            </ComboBox>
+
+                            <TextBlock Text="{DynamicResource Lang_Language}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryText}" Margin="0,0,0,5"/>
+                            <ComboBox x:Name="CmbLanguage" Style="{StaticResource NcmMasterComboBox}">
+                                <ComboBoxItem Content="{DynamicResource Lang_LangZh}"/>
+                                <ComboBoxItem Content="{DynamicResource Lang_LangEn}"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <Button Grid.Row="2" Content="{DynamicResource Lang_SaveClose}" Click="BtnCloseSettings_Click" Style="{StaticResource PrimaryButtonStyle}"/>
+                    </Grid>
+                </Border>
+            </Border>
+            <Border x:Name="AboutOverlay" Grid.RowSpan="3" Background="#66000000" CornerRadius="20" ClipToBounds="True" Visibility="Collapsed" Panel.ZIndex="100">
+                <Border Width="380" Height="330" Background="{DynamicResource CardBg}" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Opacity="0.2" BlurRadius="20" ShadowDepth="5"/>
+                    </Border.Effect>
+                    <Grid Margin="20">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="🎵" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                            <TextBlock Text="NCM Master" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryText}" HorizontalAlignment="Center"/>
+
+                            <TextBlock x:Name="TxtCurrentVersion" Text="版本 v1.0.0" FontSize="13" Foreground="{DynamicResource SecondaryText}" HorizontalAlignment="Center" Margin="0,5,0,10"/>
+
+                            <StackPanel x:Name="PanelUpdate" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10" Visibility="Collapsed">
+                                <TextBlock Text="{DynamicResource Lang_NewVersionFound}" Foreground="#E74C3C" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TxtLatestVersion" Text="v1.x.x" Foreground="#E74C3C" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <Button Content="{DynamicResource Lang_DownloadUpdate}" Click="BtnDownloadUpdate_Click" Style="{StaticResource LinkButtonStyle}" FontSize="13"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{DynamicResource Lang_AppDesc1}" FontSize="12" Foreground="{DynamicResource SecondaryText}" TextWrapping="Wrap" TextAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Lang_AppDesc2}" FontSize="12" Foreground="{DynamicResource SecondaryText}" Margin="0,5,0,15" TextWrapping="Wrap" TextAlignment="Center"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                                <TextBlock Text="{DynamicResource Lang_Repo}" FontSize="12" Foreground="{DynamicResource SecondaryText}" VerticalAlignment="Center"/>
+                                <Button Content="github.com/louis253/NcmMaster" Click="BtnGitHub_Click" Style="{StaticResource LinkButtonStyle}" FontSize="12"/>
+                            </StackPanel>
+
+                            <Button Content="{DynamicResource Lang_Close}" Click="BtnCloseAbout_Click" Style="{StaticResource OutlineButtonStyle}" Width="100"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Border>
+
+            <Border Grid.Row="2" Background="{DynamicResource PanelBg}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="0,1,0,0" CornerRadius="0,0,20,20">
+                <Grid Margin="20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button Content="{DynamicResource Lang_AddFile}" Click="BtnAddFiles_Click" Style="{StaticResource OutlineButtonStyle}" Margin="0,0,10,0"/>
+                            <Button Content="{DynamicResource Lang_AddFolder}" Click="BtnAddFolder_Click" Style="{StaticResource OutlineButtonStyle}"/>
+                        </StackPanel>
+                       <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{DynamicResource Lang_OutputDir}" Foreground="{DynamicResource SecondaryText}" VerticalAlignment="Center"/>
+                            
+                            <TextBlock x:Name="TxtOutputDir" Text="{DynamicResource Lang_SameAsSource}" VerticalAlignment="Center" Margin="5,0,10,0" TextTrimming="CharacterEllipsis" MaxWidth="350" Cursor="Hand" MouseLeftButtonUp="TxtOutputDir_MouseLeftButtonUp" ToolTip="点击打开输出目录">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="{DynamicResource PrimaryText}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="#0066CC"/>
+                                                <Setter Property="TextDecorations" Value="Underline"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            
+                            <Button Content="{DynamicResource Lang_ChangeBtn}" Click="BtnChangeOutputDir_Click" Style="{StaticResource LinkButtonStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button x:Name="BtnConvert" Grid.Column="1" Content="{DynamicResource Lang_StartConvert}" Click="BtnStartConvert_Click" Foreground="White" FontSize="15" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#FF4D4D"/>
+                                <Setter Property="Padding" Value="30,12"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="8">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="BtnBorder" Property="Background" Value="#D94343"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter TargetName="BtnBorder" Property="Background" Value="{DynamicResource BorderColor}"/>
+                                                    <Setter Property="Foreground" Value="{DynamicResource SecondaryText}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
