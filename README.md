@@ -106,7 +106,7 @@
 
 3. 用户因使用本程序而产生的任何版权纠纷或法律责任，由用户自行承担。
 
-4. 核心解码代码贡献源于Github的相关作者提供。
+4. 核心解码代码贡献基于 https://github.com/taurusxin/ncmdump 和 https://git.taurusxin.com/taurusxin/ncmdump-go 的 C# 移植版。
 
    
 
