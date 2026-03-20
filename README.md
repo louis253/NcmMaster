@@ -51,11 +51,11 @@
 
 ## 🚀 如何使用
 
-1. **下载**：前往 [Releases](https://www.google.com/search?q=https://github.com/louis253/NcmMaster/releases) 页面下载最新的 `NcmMaster.exe` 。
+1. **下载**：前往 [Releases](https://github.com/louis253/NcmMaster/releases) 页面下载最新的合适版本 。
 
-2. **导入**：直接将 NCM 文件或整个文件夹拖入程序界面 。
+2. **导入**：直接将 NCM 文件或整个文件夹拖入或加入程序界面 。
 
-3. **配置**：点击齿轮图标 ⚙️ 设置你喜欢的命名格式和主题 。
+3. **配置**：点击齿轮图标 ⚙️ 设置你喜欢的导出命名格式、主题与语言 。
 
 4. **转换**：点击右下角的“开始转换”按钮，静待佳音 。
 
