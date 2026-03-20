@@ -86,7 +86,7 @@
 
 ## 🛠️ 技术栈
 
-- **Language**: VB.NET 
+- **Language**: VB.NET
 
 - **UI Framework**: WPF (Windows Presentation Foundation) 
 
